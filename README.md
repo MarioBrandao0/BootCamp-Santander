@@ -14,3 +14,6 @@ Repositorio para armazenar resumo sobre o git e GitHub que estou vendo no DIO [B
 `git pull origin [branch]` -> puxa as informações do repositorio remoto para sua branch atual, podemos passar o nome da branch após o pull para poder puxar de determinada branch
 
 `git status` -> mostra os status na nossa arvore de projeto. Com arquivos que ainda não foram rastreados e os que tinham e acabaram sendo excluidos.
+
+## Comandos extras:
+`echo [conteudo]/ > .gitignore` -> isso vai criar um arquivo gitignore caso ele não exista e vai adicionar o nosso conteudo a ele
