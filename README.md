@@ -1,4 +1,3 @@
-
 # Dio resumo Git e GitHub
 
 Repositorio para armazenar resumo sobre o git e GitHub que estou vendo no DIO [BootCamp-Santender](https://www.dio.me/)
@@ -22,6 +21,8 @@ O `git reset` é usado para voltar o histórico do projeto para um ponto anterio
 
 ### `git reset --soft`
 Volta o projeto para um commit anterior **mas mantém todos os arquivos prontos para serem comitados de novo**.
+### `git reset --mixed`
+Volta o projeto para o commit desejado usando o hash dele (mantem os arquivos para que sejam adicionados e dps commitados)
 
 ### `git reset --hard`
 Retorna todo o projeto para o commit desejado e deleta os arquivos para ficar identico ao commmit
