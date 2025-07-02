@@ -1,4 +1,4 @@
-package javas.programacao.de.linguagem.fundamentos;
+package fundamentos;
 
 public class Primitivos {
     public static void main(String[] args) {

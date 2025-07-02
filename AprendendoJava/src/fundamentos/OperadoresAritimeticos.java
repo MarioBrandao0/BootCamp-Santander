@@ -1,4 +1,4 @@
-package javas.programacao.de.linguagem.fundamentos;
+package fundamentos;
 
 import java.util.Scanner;
 
