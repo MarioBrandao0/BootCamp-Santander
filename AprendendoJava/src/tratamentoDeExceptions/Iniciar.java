@@ -1,6 +1,8 @@
 package tratamentoDeExceptions;
 
 import tratamentoDeExceptions.dao.UserDAO;
+import tratamentoDeExceptions.exceptions.EmptyStorageException;
+import tratamentoDeExceptions.exceptions.UserNotFoundException;
 import tratamentoDeExceptions.mode.MenuOption;
 import tratamentoDeExceptions.mode.UserModel;
 
@@ -38,17 +40,36 @@ public class Iniciar {
                     System.out.printf("Usuário salvo com sucesso\n%s\n", novoUser.toString());
                 }
                 case DELETE -> {
-                    userDAO.delete(requestId());
-                    System.out.println("Usuário deletado com sucesso");
+                    try {
+                        userDAO.delete(requestId());
+                        System.out.println("Usuário deletado com sucesso");
+                    } catch (UserNotFoundException | EmptyStorageException ex) {
+                        System.out.println(ex.getMessage());
+                    } finally {
+                        System.out.println("=".repeat(20));
+                    }
                 }
                 case UPDATE ->  userDAO.update(requestUserUpdate());
-                case FIND_BY_ID -> userDAO.findById(requestId());
+                case FIND_BY_ID -> {
+                    try {
+                        long id = requestId();
+                        UserModel usuarioEncontrado = userDAO.findById(id);
+                        System.out.println("Usuário encontrado:");
+                        System.out.println(usuarioEncontrado);
+                    } catch (UserNotFoundException | EmptyStorageException exd) {
+                        System.out.println(exd.getMessage());
+                    }
+                }
                 case FIND_ALL -> {
-                    List<UserModel> encontrados = userDAO.findAll();
-                    System.out.println("=".repeat(20));
-                    System.out.println("Usuários Encontrados:");
-                    encontrados.forEach(System.out::println);
-                    System.out.println("==========FIM==========");
+                    try {
+                        List<UserModel> encontrados = userDAO.findAll();
+                        System.out.println("=".repeat(20));
+                        System.out.println("Usuários Encontrados:");
+                        encontrados.forEach(System.out::println);
+                        System.out.println("==========FIM==========");
+                    } catch (UserNotFoundException | EmptyStorageException ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
                 case EXIT -> System.exit(0);
 

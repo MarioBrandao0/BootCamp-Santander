@@ -1,5 +1,6 @@
 package tratamentoDeExceptions.dao;
 
+import tratamentoDeExceptions.exceptions.EmptyStorageException;
 import tratamentoDeExceptions.exceptions.UserNotFoundException;
 import tratamentoDeExceptions.mode.UserModel;
 
@@ -37,6 +38,8 @@ public class UserDAO {
     }
 
     public UserModel findById(final long id) {
+        verifyStorage();//Verifica o listModels, se estiver vazio, lança uma exception e não passa para o resto do codigo
+
         String message = "Usuário não encontrado";
         return listModels.stream()
                 .filter(user -> user.getId() == id)
@@ -45,6 +48,10 @@ public class UserDAO {
 
     public List<UserModel> findAll() {
         return listModels.isEmpty() ? null : listModels;
+    }
+
+    private void verifyStorage() {
+        if(listModels.isEmpty()) throw new EmptyStorageException("Sem usuários cadastrados");
     }
 
 }
